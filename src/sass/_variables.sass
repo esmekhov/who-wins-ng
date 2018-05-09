@@ -1,0 +1,38 @@
+$mobile-width: 320px    
+$tablet-width: 768px
+$desktop-width: 1024px
+
+@mixin mobile 
+    @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) 
+        @content;
+
+@mixin tablet
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px})
+        @content;
+
+@mixin desktop
+    @media (min-width: #{$desktop-width})
+        @content;
+
+$white: #FFF
+$black: #000
+$dark-grey: #222
+$medium-grey: #888
+$offwhite: #FAFAFA
+
+$highlight: #4DB6AC
+$highlight-active: #64FFDA
+
+$primary: $highlight
+$primary-active: $highlight-active
+$secondary: $dark-grey
+$secondary-active: $medium-grey
+
+$background-primary: $offwhite
+$font-color-primary: $black
+
+$border-color-primary: $offwhite
+$font-color-link: $primary
+
+$base-unit: 8px
+$base-spacing: 2 * $base-unit

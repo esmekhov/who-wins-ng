@@ -1,0 +1,29 @@
+@import './variables'
+@import './mixins'
+@import './extensions'
+
+@import './reset'
+
+
+%fullscreen
+    width: 100vw
+    min-height: 100vh
+    overflow-x: hidden
+
+body
+    color: $font-color-primary
+    background: $background-primary
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif
+    @extend %fullscreen
+    font-weight: 400
+    +font-smoothing()
+
+a
+    color: $primary
+
+li, p
+    margin-bottom: $base-spacing/2
+
+img
+    user-select: none
+    max-width: 100%
