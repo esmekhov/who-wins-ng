@@ -8,6 +8,8 @@ import { ContentComponent } from './components/content/content.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 import { CombatLogComponent } from './components/combat-log/combat-log.component';
 import { LaunchPanelComponent } from './components/launch-panel/launch-panel.component';
+import { CharacterListComponent } from './components/character-list/character-list.component';
+import { CharacterPanelComponent } from './components/character-panel/character-panel.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { LaunchPanelComponent } from './components/launch-panel/launch-panel.com
     ContentComponent,
     CharacterCardComponent,
     CombatLogComponent,
-    LaunchPanelComponent
+    LaunchPanelComponent,
+    CharacterListComponent,
+    CharacterPanelComponent
   ],
   imports: [
     BrowserModule
