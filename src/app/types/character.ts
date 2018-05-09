@@ -1,6 +1,9 @@
 export class CharacterProperty {
 
-    constructor(name, value) {}
+    constructor(name, value) {
+        this.name = name;
+        this.value = value;
+    }
     name: string;
     value: any;
 }
