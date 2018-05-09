@@ -1,0 +1,30 @@
+@import '../../../sass/extensions'
+@import '../../../sass/variables'
+
+.character-card
+    display: block
+    background: $background-primary
+    border-radius: 2px
+    margin: 0 0 $base-spacing/2
+    padding: $base-spacing
+    @extend %shadow
+
+.character-card-header
+    @extend %flex-row
+    justify-content: space-between
+    font-weight: bold
+    padding-bottom: $base-spacing
+    span
+        margin-right: $base-spacing
+    span:last-child
+        margin-right: 0
+
+.character-stat-list
+    list-style: none
+
+.character-stat
+    @extend %flex-row
+    span
+        margin-right: $base-spacing
+    span:last-child
+        margin-right: 0
