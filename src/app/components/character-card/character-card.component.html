@@ -1,19 +1,9 @@
-<div class="character-card">
-  <div class="character-card-header">
-    <span>Name</span>
-  </div>
-  <ul class="character-stat-list">
-    <li class="character-stat">
-      <span>HP</span>
-      <span>100</span>
-    </li>
-    <li class="character-stat">
-      <span>Damage</span>
-      <span>5</span>
-    </li>
-    <li class="character-stat">
-      <span>Speed</span>
-      <span>10</span>
-    </li>
-  </ul>
+<div class="character-card-header">
+  <span>{{character.name}}</span>
 </div>
+<ul *ngFor="let prop of character.properties" class="character-stat-list">
+  <li class="character-stat">
+    <span>{{prop.name}}</span>
+    <span>{{prop.value}}</span>
+  </li>
+</ul>
