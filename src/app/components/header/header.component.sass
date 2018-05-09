@@ -1,0 +1,13 @@
+@import '../../sass/variables'
+@import '../../sass/extensions'
+
+.app-header
+	width: 100%
+	background: $primary
+	padding: $base-spacing 2*$base-spacing
+	@extend %shadow
+	@include mobile
+		padding: $base-spacing $base-spacing/2
+
+	a
+		display: block
