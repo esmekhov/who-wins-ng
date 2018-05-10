@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import App from '../../simulation/project';
 
 @Component({
   selector: 'app-combat-log',
@@ -10,6 +11,9 @@ export class CombatLogComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const app = new App();
+    const simulator = app.run();
+    console.log(simulator.queue);
   }
 
 }

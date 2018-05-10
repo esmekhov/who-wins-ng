@@ -16,18 +16,18 @@ export class Player {
         chars.push(character);
     }
 
-    getCharacters(id?: any) {
+    getCharacters(id?: string) {
         const key = id || this.id;
         return this.context.characters.get(key);
     }
 
     getOtherCharacters() {
         let result = [];
-        for (const playerId in this.context.characters) {
+        this.context.characters.forEach((chars: Character[], playerId: string) => {
             if (playerId !== this.id) {
-                result = result.concat(this.context.characters[playerId]);
+                result = result.concat(chars);
             }
-        }
+        });
         return result;
     }
 

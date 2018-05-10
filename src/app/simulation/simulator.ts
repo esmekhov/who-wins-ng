@@ -1,13 +1,13 @@
 import Resolver from './resolver';
 import Queue from './game-queue';
 import { Character } from './character';
-import { AttackEvent } from './game-event';
+import { AttackEvent, GameEvent } from './game-event';
 import { attack } from './process';
 
 export class SimulatorContext {
 
     public characters: Map<string, Character[]>;
-    public timer: 0;
+    public timer = 0;
 
     constructor(public players?, public ruleSet?) {
         this.players = players;
@@ -47,11 +47,11 @@ export class Simulator {
         return this.context.ruleSet;
     }
 
-    get timer() {
+    get timer(): number {
         return this.context.timer;
     }
 
-    set timer(time) {
+    set timer(time: number) {
         this.context.timer = time;
     }
 
@@ -59,7 +59,7 @@ export class Simulator {
         this.context.init();
     }
 
-    process(event) {
+    process(event: GameEvent) {
         if (event instanceof AttackEvent) {
             attack(event);
         }

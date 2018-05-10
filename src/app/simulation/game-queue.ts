@@ -1,6 +1,6 @@
 import { GameEvent } from './game-event';
 
-type TimeMap = Map<string, GameEvent[]>;
+type TimeMap = Map<number, GameEvent[]>;
 
 export default class GameEventQueue {
 
@@ -11,8 +11,8 @@ export default class GameEventQueue {
     resolved: TimeMap;
 
     constructor() {
-        this.planned = new Map<string, GameEvent[]>();
-        this.resolved = new Map<string, GameEvent[]>();
+        this.planned = new Map<number, GameEvent[]>();
+        this.resolved = new Map<number, GameEvent[]>();
     }
 
     _put(tm: TimeMap, event: GameEvent) {
@@ -38,14 +38,18 @@ export default class GameEventQueue {
             const events = tm.get(t);
             const ind = events.indexOf(event);
             events.splice(ind, 1);
-            tm.set(t, events);
+            if (events.length === 0) {
+                tm.delete(t);
+            } else {
+                tm.set(t, events);
+            }
         }
     }
 
-    _hasEvent(obj, event: GameEvent): boolean {
+    _hasEvent(tm: TimeMap, event: GameEvent): boolean {
         const t = event.time;
-        if (obj.hasOwnProperty(t)) {
-            const events = obj[t];
+        if (tm.has(t)) {
+            const events = tm.get(t);
             return events.includes(event);
         }
         return false;
@@ -58,15 +62,15 @@ export default class GameEventQueue {
         }
     }
 
-    getEvents(time?): GameEvent[] {
-        if (this.planned.hasOwnProperty(time)) {
-            return this.planned[time].slice();
+    getEvents(time: number): GameEvent[] {
+        if (this.planned.has(time)) {
+            return this.planned.get(time).slice();
         }
         return [];
     }
 
-    resolveEvents(time) {
-        this.getEvents().forEach(e => this.resolve(e));
+    resolveEvents(time: number) {
+        this.getEvents(time).forEach(e => this.resolve(e));
     }
 
     getResolvedEvents(): TimeMap {
