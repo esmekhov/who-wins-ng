@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { State } from '../../reducers';
+import { getEdit } from '../../reducers/layout';
+
 import { SimulationService } from '../../services/simulation.service';
 import { GameEvent } from '../../simulation/game-event';
 import Team from '../../types/team';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-simulation-container',
@@ -13,10 +18,14 @@ import Team from '../../types/team';
 })
 export class SimulationContainerComponent implements OnInit {
 
+
+  private $edit: Observable<boolean>;
   private entries: GameEvent[];
   private teams: Team[];
 
-  constructor(private simulationService: SimulationService) { }
+  constructor(private simulationService: SimulationService, private store: Store<State>) {
+    // this.edit$ = this.store.pipe(select(getEdit));
+  }
 
   ngOnInit() {
     this.simulationService.init();
