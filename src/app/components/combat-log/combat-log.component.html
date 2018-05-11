@@ -3,6 +3,6 @@
     <h2>Details</h2>
   </div>
   <div *ngFor="let entry of entries" class="combat-log-content">
-    <span class="combat-log-entry">{{entry.time}}</span>
+    <span class="combat-log-entry">[{{entry.time | date : 'HH:mm:ss.SS' : 'UTC'}}] {{entry.source.name}} hits {{entry.target.name}} for {{entry.damage}}</span>
   </div>
 </div>

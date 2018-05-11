@@ -2,9 +2,10 @@ import { AttackEvent } from './game-event';
 
 export class Character {
 
-    constructor(public hp = 100, public damage = 5) {
+    constructor(public hp = 100, public damage = 5, public name = 'Hero') {
         this.hp = hp;
         this.damage = damage;
+        this.name = name;
     }
 
     attack(target, time) {

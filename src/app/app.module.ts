@@ -26,7 +26,8 @@ import { CharacterPanelComponent } from './components/character-panel/character-
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
