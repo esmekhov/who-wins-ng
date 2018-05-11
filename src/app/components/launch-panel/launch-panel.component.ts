@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-launch-panel',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LaunchPanelComponent implements OnInit {
 
+  @Input() inProgress = false;
+  @Output() launch = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onLaunch(value: boolean) {
+    this.launch.emit(value);
   }
 
 }

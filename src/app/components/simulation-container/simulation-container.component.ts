@@ -23,12 +23,13 @@ export class SimulationContainerComponent implements OnInit {
     this.teams = this.simulationService.getTeams();
   }
 
-  run() {
+  run(value: boolean) {
     const simulator = this.simulationService.run();
     const entriesMap = simulator.queue.getResolvedEvents();
     let entries = [];
     entriesMap.forEach(v => entries = entries.concat(v));
     this.entries = entries;
+    this.teams = this.simulationService.getTeams();
   }
 
 }
