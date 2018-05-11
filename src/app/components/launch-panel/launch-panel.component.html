@@ -1,2 +1,13 @@
-<span>Time: 100</span>
-<a class="launch-panel-button" (click)="onLaunch(true)">Go!</a>
+<ng-container *ngIf="!edit">
+    <span class="max-time">Time: {{maxTimeMs}}</span>
+    <a class="button" (click)="onReset(true)">Reset</a>
+    <a class="button" (click)="onEdit(true)">Edit</a>
+    <a class="button" (click)="onLaunch(true)">Go!</a>
+</ng-container>
+
+<ng-container *ngIf="edit">
+    <label for="max-time">Max time</label>
+    <input name="max-time" class="max-time-input" type="number" />
+    
+    <a class="button" (click)="onEdit(false)">Save</a>
+</ng-container>

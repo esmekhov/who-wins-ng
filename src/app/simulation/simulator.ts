@@ -80,9 +80,9 @@ export class Simulator {
     }
 
     run(): Player[] {
-        do {
+        while (this.timer < this.timeout && this.ruleSet.getWinners().length === 0) {
             this.step();
-        } while (this.timer < this.timeout && this.ruleSet.getWinners().length === 0);
+        }
         return this.ruleSet.getWinners();
     }
 }
