@@ -1,27 +1,30 @@
+import { Player } from './player';
+import { SimulatorContext } from './simulator';
+
 export class RuleSet {
 
-    private context;
+    private context: SimulatorContext;
 
-    setContext(context) {
+    setContext(context: SimulatorContext) {
         this.context = context;
     }
 
-    getPlayers() {
+    getPlayers(): Player[] {
         return this.context.players;
     }
 }
 
 export class MyRuleSet extends RuleSet {
 
-    getDead() {
+    getDead(): Player[] {
         return this.getPlayers().filter(p => p.getCharacters().filter(c => !c.isAlive()).length > 0);
     }
 
-    getAlive() {
+    getAlive(): Player[] {
         return this.getPlayers().filter(p => p.getCharacters().filter(c => c.isAlive()).length > 0);
     }
 
-    getWinners() {
+    getWinners(): Player[] {
         if (this.getAlive().length === 1) {
             return this.getAlive();
         }

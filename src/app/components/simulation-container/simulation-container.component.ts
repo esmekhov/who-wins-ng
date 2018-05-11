@@ -19,12 +19,16 @@ export class SimulationContainerComponent implements OnInit {
   constructor(private simulationService: SimulationService) { }
 
   ngOnInit() {
-    const simulator = this.simulationService.runSimulation();
+    this.simulationService.init();
+    this.teams = this.simulationService.getTeams();
+  }
+
+  run() {
+    const simulator = this.simulationService.run();
     const entriesMap = simulator.queue.getResolvedEvents();
     let entries = [];
     entriesMap.forEach(v => entries = entries.concat(v));
     this.entries = entries;
-    this.teams = this.simulationService.getTeams();
   }
 
 }

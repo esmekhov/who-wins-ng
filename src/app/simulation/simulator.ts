@@ -3,6 +3,7 @@ import Queue from './game-queue';
 import { GameCharacter } from './character';
 import { AttackEvent, GameEvent } from './game-event';
 import { attack } from './process';
+import { Player } from './player';
 
 export class SimulatorContext {
 
@@ -78,7 +79,7 @@ export class Simulator {
         this.timer += this.stepTime;
     }
 
-    run() {
+    run(): Player[] {
         do {
             this.step();
         } while (this.timer < this.timeout && this.ruleSet.getWinners().length === 0);
