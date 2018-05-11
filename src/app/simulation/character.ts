@@ -1,6 +1,6 @@
 import { AttackEvent } from './game-event';
 
-export class Character {
+export class GameCharacter {
 
     constructor(public hp = 100, public damage = 5, public name = 'Hero') {
         this.hp = hp;

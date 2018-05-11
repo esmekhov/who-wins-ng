@@ -1,12 +1,12 @@
 import Resolver from './resolver';
 import Queue from './game-queue';
-import { Character } from './character';
+import { GameCharacter } from './character';
 import { AttackEvent, GameEvent } from './game-event';
 import { attack } from './process';
 
 export class SimulatorContext {
 
-    public characters: Map<string, Character[]>;
+    public characters: Map<string, GameCharacter[]>;
     public timer = 0;
 
     constructor(public players?, public ruleSet?) {
@@ -15,7 +15,7 @@ export class SimulatorContext {
     }
 
     init() {
-        this.characters = new Map<string, Character[]>();
+        this.characters = new Map<string, GameCharacter[]>();
         this.players.map(p => {
             this.characters.set(p.id, []);
             p.setContext(this);

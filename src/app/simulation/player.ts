@@ -1,17 +1,17 @@
 import { SimulatorContext } from './simulator';
-import { Character } from './character';
+import { GameCharacter } from './character';
 
 export class Player {
 
     protected context: SimulatorContext;
 
-    constructor(private readonly id: string) {}
+    constructor(public readonly id: string) {}
 
     setContext(context: SimulatorContext) {
         this.context = context;
     }
 
-    addCharacter(character: Character) {
+    addCharacter(character: GameCharacter) {
         const chars = this.context.characters.get(this.id);
         chars.push(character);
     }
@@ -23,7 +23,7 @@ export class Player {
 
     getOtherCharacters() {
         let result = [];
-        this.context.characters.forEach((chars: Character[], playerId: string) => {
+        this.context.characters.forEach((chars: GameCharacter[], playerId: string) => {
             if (playerId !== this.id) {
                 result = result.concat(chars);
             }

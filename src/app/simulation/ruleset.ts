@@ -1,4 +1,4 @@
-class RuleSet {
+export class RuleSet {
 
     private context;
 
