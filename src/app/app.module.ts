@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ContentComponent } from './components/content/content.component';
+import { SimulationContainerComponent } from './components/simulation-container/simulation-container.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 import { CombatLogComponent } from './components/combat-log/combat-log.component';
 import { LaunchPanelComponent } from './components/launch-panel/launch-panel.component';
@@ -16,7 +16,7 @@ import { CharacterPanelComponent } from './components/character-panel/character-
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContentComponent,
+    SimulationContainerComponent,
     CharacterCardComponent,
     CombatLogComponent,
     LaunchPanelComponent,
