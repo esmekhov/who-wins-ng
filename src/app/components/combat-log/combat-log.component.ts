@@ -1,25 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GameEvent } from '../../simulation/game-event';
-import { SimulationService } from '../../services/simulation.service';
 
 @Component({
   selector: 'app-combat-log',
   templateUrl: './combat-log.component.html',
-  styleUrls: ['./combat-log.component.sass'],
-  providers: [
-    SimulationService
-  ]
+  styleUrls: ['./combat-log.component.sass']
 })
 export class CombatLogComponent implements OnInit {
 
-  entries: GameEvent[] = [];
+  @Input() entries: GameEvent[] = [];
 
-  constructor(private simulationService: SimulationService) { }
+  constructor() { }
 
   ngOnInit() {
-    const simulator = this.simulationService.runSimulation();
-    const entriesMap = simulator.queue.getResolvedEvents();
-    entriesMap.forEach(v => this.entries = this.entries.concat(v));
   }
 
 }
