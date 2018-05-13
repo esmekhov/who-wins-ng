@@ -18,4 +18,5 @@ export const reducers: ActionReducerMap<State> = {
     layout: layoutReducer
 };
 
-
+export const getSimulationOptions = (state: State) => state.simulationOptions;
+export const getLayout = (state: State) => state.layout;

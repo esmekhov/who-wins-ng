@@ -1,3 +1,6 @@
-<app-launch-panel (launch)="run($event)"></app-launch-panel>
+<app-launch-panel [layout]="layout$ | async" 
+    (launch)="run($event)" (edit)="edit($event)" 
+    (save)="save($event)">
+</app-launch-panel>
 <app-character-panel [teams]="teams"></app-character-panel>
 <app-combat-log [entries]="entries"></app-combat-log>

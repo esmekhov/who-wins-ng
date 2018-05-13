@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { State } from '../../reducers';
-import { getEdit } from '../../reducers/layout';
+import { State, getLayout } from '../../reducers';
+import { getEdit, Actions, Layout } from '../../reducers/layout';
 
 import { SimulationService } from '../../services/simulation.service';
 import { GameEvent } from '../../simulation/game-event';
@@ -18,13 +18,12 @@ import { Observable } from 'rxjs';
 })
 export class SimulationContainerComponent implements OnInit {
 
-
-  private $edit: Observable<boolean>;
+  private layout$: Observable<Layout>;
   private entries: GameEvent[];
   private teams: Team[];
 
   constructor(private simulationService: SimulationService, private store: Store<State>) {
-    // this.edit$ = this.store.pipe(select(getEdit));
+    this.layout$ = this.store.pipe(select(getLayout));
   }
 
   ngOnInit() {
@@ -39,6 +38,18 @@ export class SimulationContainerComponent implements OnInit {
     entriesMap.forEach(v => entries = entries.concat(v));
     this.entries = entries;
     this.teams = this.simulationService.getTeams();
+  }
+
+  edit(editMode: boolean) {
+    if (editMode) {
+      this.store.dispatch({ type: Actions.EDIT });
+    } else {
+      this.store.dispatch({ type: Actions.CANCEL });
+    }
+  }
+
+  save() {
+    this.store.dispatch({ type: Actions.SAVE });
   }
 
 }

@@ -1,13 +1,14 @@
-<ng-container *ngIf="!edit">
+<ng-container *ngIf="!layout.edit">
     <span class="max-time">Time: {{maxTimeMs}}</span>
     <a class="button" (click)="onReset(true)">Reset</a>
     <a class="button" (click)="onEdit(true)">Edit</a>
     <a class="button" (click)="onLaunch(true)">Go!</a>
 </ng-container>
 
-<ng-container *ngIf="edit">
+<ng-container *ngIf="layout.edit">
     <label for="max-time">Max time</label>
     <input name="max-time" class="max-time-input" type="number" />
     
-    <a class="button" (click)="onEdit(false)">Save</a>
+    <a class="button" (click)="onEdit(false)">Cancel</a>
+    <a class="button" (click)="onSave(true)">Save</a>
 </ng-container>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Layout } from '../../reducers/layout';
 
 @Component({
   selector: 'app-launch-panel',
@@ -7,11 +8,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class LaunchPanelComponent implements OnInit {
 
-  @Input() inProgress = false;
-  @Input() edit = false;
+  @Input() layout: Layout;
 
+  @Output() edit = new EventEmitter<boolean>();
   @Output() reset = new EventEmitter<boolean>();
   @Output() launch = new EventEmitter<boolean>();
+  @Output() save = new EventEmitter<boolean>();
 
   maxTimeMs = 10000;
 
@@ -25,10 +27,15 @@ export class LaunchPanelComponent implements OnInit {
   }
 
   onEdit(value: boolean) {
-    this.edit = value;
+    this.edit.emit(value);
   }
 
   onReset(value: boolean) {
     this.reset.emit(value);
   }
+
+  onSave(value: boolean) {
+    this.save.emit(value);
+  }
+
 }

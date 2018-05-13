@@ -6,7 +6,7 @@ export interface SimulationOptions {
     stepTimeMs: number;
 }
 
-export enum Actions {SET_MAXIMUM_TIME_MS, SET_STEP_TIME_MS}
+export const Actions = {SET_MAXIMUM_TIME_MS, SET_STEP_TIME_MS};
 
 const merge = (state: SimulationOptions) => (obj) => Object.assign({}, state, obj);
 export const reducer = (state: SimulationOptions, action) => {

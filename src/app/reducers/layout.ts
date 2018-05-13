@@ -7,10 +7,15 @@ export interface Layout {
     finished: boolean;
 }
 
-export enum Actions {EDIT, SAVE, CANCEL}
+const initialState: Layout = {
+    edit: false,
+    finished: false
+};
+
+export const Actions = {EDIT, SAVE, CANCEL};
 
 const merge = (state: Layout) => (obj) => Object.assign({}, state, obj);
-export const reducer = (state: Layout, action) => {
+export const reducer = (state = initialState, action) => {
     const apply = merge(state);
     switch (action.type) {
         case EDIT:
