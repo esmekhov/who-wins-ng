@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { State, getLayout } from '../../reducers';
+import { State, getLayout, getSimulationOptions } from '../../reducers';
 import { getEdit, Actions, Layout } from '../../reducers/layout';
 
 import { SimulationService } from '../../services/simulation.service';
 import { GameEvent } from '../../simulation/game-event';
 import Team from '../../types/team';
 import { Observable } from 'rxjs';
+import { SimulationOptions, Actions as SimActions } from '../../reducers/simulation-options';
 
 @Component({
   selector: 'app-simulation-container',
@@ -19,11 +20,14 @@ import { Observable } from 'rxjs';
 export class SimulationContainerComponent implements OnInit {
 
   private layout$: Observable<Layout>;
+  private simulationOptions$: Observable<SimulationOptions>;
+
   private entries: GameEvent[];
   private teams: Team[];
 
   constructor(private simulationService: SimulationService, private store: Store<State>) {
     this.layout$ = this.store.pipe(select(getLayout));
+    this.simulationOptions$ = this.store.pipe(select(getSimulationOptions));
   }
 
   ngOnInit() {
@@ -48,8 +52,14 @@ export class SimulationContainerComponent implements OnInit {
     }
   }
 
-  save() {
-    this.store.dispatch({ type: Actions.SAVE });
+  save(value: SimulationOptions) {
+    this.store.dispatch({ type: Actions.SAVE, payload: value });
+    this.store.dispatch({ type: SimActions.SET_MAXIMUM_TIME_MS, payload: value });
+    this.store.dispatch({ type: SimActions.SET_STEP_TIME_MS, payload: value });
+  }
+
+  reset(value: boolean) {
+    this.store.dispatch({ type: SimActions.RESET });
   }
 
 }

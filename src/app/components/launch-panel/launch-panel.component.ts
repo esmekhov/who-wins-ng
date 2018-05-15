@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Layout } from '../../reducers/layout';
+import { SimulationOptions } from '../../reducers/simulation-options';
 
 @Component({
   selector: 'app-launch-panel',
@@ -9,13 +10,12 @@ import { Layout } from '../../reducers/layout';
 export class LaunchPanelComponent implements OnInit {
 
   @Input() layout: Layout;
+  @Input() simulationOptions: SimulationOptions; // we treat this object as dirty state
 
   @Output() edit = new EventEmitter<boolean>();
   @Output() reset = new EventEmitter<boolean>();
   @Output() launch = new EventEmitter<boolean>();
-  @Output() save = new EventEmitter<boolean>();
-
-  maxTimeMs = 10000;
+  @Output() save = new EventEmitter<SimulationOptions>();
 
   constructor() { }
 
@@ -34,8 +34,17 @@ export class LaunchPanelComponent implements OnInit {
     this.reset.emit(value);
   }
 
-  onSave(value: boolean) {
-    this.save.emit(value);
+  onSave() {
+    this.save.emit({ maximumTimeMs: this.simulationOptions.maximumTimeMs,
+      stepTimeMs: this.simulationOptions.stepTimeMs });
+  }
+
+  onUpdateMaxTime(value: number) {
+    this.simulationOptions.maximumTimeMs = value;
+  }
+
+  onUpdateStepTime(value: number) {
+    this.simulationOptions.stepTimeMs = value;
   }
 
 }
