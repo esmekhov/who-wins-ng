@@ -25,7 +25,7 @@ export const reducer = (state = initialState, action) => {
         case RESET:
             return apply(initialState);
         default:
-            return apply(state);
+            return state;
     }
 };
 

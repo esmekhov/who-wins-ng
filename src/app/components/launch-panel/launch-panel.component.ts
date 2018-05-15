@@ -10,7 +10,7 @@ import { SimulationOptions } from '../../reducers/simulation-options';
 export class LaunchPanelComponent implements OnInit {
 
   @Input() layout: Layout;
-  @Input() simulationOptions: SimulationOptions; // we treat this object as dirty state
+  private _simulationOptions: SimulationOptions;
 
   @Output() edit = new EventEmitter<boolean>();
   @Output() reset = new EventEmitter<boolean>();
@@ -20,6 +20,15 @@ export class LaunchPanelComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  @Input()
+  set simulationOptions(options: SimulationOptions) {
+    this._simulationOptions = Object.assign({}, options);
+  }
+
+  get simulationOptions() {
+    return this._simulationOptions;
   }
 
   onLaunch(value: boolean) {
@@ -39,12 +48,22 @@ export class LaunchPanelComponent implements OnInit {
       stepTimeMs: this.simulationOptions.stepTimeMs });
   }
 
+  _isValidTime(value: number) {
+    return !Number.isNaN(value) && value > 0;
+  }
+
   onUpdateMaxTime(value: string) {
-    this.simulationOptions.maximumTimeMs = Number.parseInt(value);
+    const time = Number.parseInt(value);
+    if (this._isValidTime(time)) {
+      this.simulationOptions.maximumTimeMs = time;
+    }
   }
 
   onUpdateStepTime(value: string) {
-    this.simulationOptions.stepTimeMs = Number.parseInt(value);
+    const time = Number.parseInt(value);
+    if (this._isValidTime(time)) {
+      this.simulationOptions.stepTimeMs = time;
+    }
   }
 
 }
