@@ -30,6 +30,14 @@ export class SimulationService {
     return this.players;
   }
 
+  setMaxTimeMs(maxTimeMs: number) {
+    this.simulator.maxTimeMs = maxTimeMs;
+  }
+
+  setStepTimeMs(stepTimeMs: number) {
+    this.simulator.stepTimeMs = stepTimeMs;
+  }
+
   init() {
     this.context = new SimulatorContext();
     this.ruleSet.setContext(this.context);

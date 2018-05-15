@@ -39,12 +39,12 @@ export class LaunchPanelComponent implements OnInit {
       stepTimeMs: this.simulationOptions.stepTimeMs });
   }
 
-  onUpdateMaxTime(value: number) {
-    this.simulationOptions.maximumTimeMs = value;
+  onUpdateMaxTime(value: string) {
+    this.simulationOptions.maximumTimeMs = Number.parseInt(value);
   }
 
-  onUpdateStepTime(value: number) {
-    this.simulationOptions.stepTimeMs = value;
+  onUpdateStepTime(value: string) {
+    this.simulationOptions.stepTimeMs = Number.parseInt(value);
   }
 
 }

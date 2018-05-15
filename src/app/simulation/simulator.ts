@@ -29,8 +29,8 @@ export class Simulator {
 
     public queue: Queue;
     private resolver: Resolver;
-    private stepTime = 100;   // ms
-    private timeout = 100000; // ms
+    public stepTimeMs = 100;
+    public maxTimeMs = 100000;
 
     constructor(private context: SimulatorContext) {
         this.context = context;
@@ -76,11 +76,11 @@ export class Simulator {
         this.resolver.resolve(this.timer);
 
         // update timer
-        this.timer += this.stepTime;
+        this.timer += this.stepTimeMs;
     }
 
     run(): Player[] {
-        while (this.timer < this.timeout && this.ruleSet.getWinners().length === 0) {
+        while (this.timer < this.maxTimeMs && this.ruleSet.getWinners().length === 0) {
             this.step();
         }
         return this.ruleSet.getWinners();

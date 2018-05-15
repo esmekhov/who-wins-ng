@@ -22,6 +22,7 @@ export class SimulationContainerComponent implements OnInit {
   private layout$: Observable<Layout>;
   private simulationOptions$: Observable<SimulationOptions>;
 
+  private options: SimulationOptions;
   private entries: GameEvent[];
   private teams: Team[];
 
@@ -33,9 +34,13 @@ export class SimulationContainerComponent implements OnInit {
   ngOnInit() {
     this.simulationService.init();
     this.teams = this.simulationService.getTeams();
+    this.simulationOptions$.subscribe(o => this.options = o);
   }
 
   run(value: boolean) {
+    this.simulationService.setMaxTimeMs(this.options.maximumTimeMs);
+    this.simulationService.setStepTimeMs(this.options.stepTimeMs);
+
     const simulator = this.simulationService.run();
     const entriesMap = simulator.queue.getResolvedEvents();
     let entries = [];
