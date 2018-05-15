@@ -63,7 +63,7 @@ export class SimulationContainerComponent implements OnInit {
     this.store.dispatch({ type: SimActions.SET_STEP_TIME_MS, payload: value });
   }
 
-  reset(value: boolean) {
+  defaults(value: boolean) {
     this.store.dispatch({ type: SimActions.RESET });
   }
 

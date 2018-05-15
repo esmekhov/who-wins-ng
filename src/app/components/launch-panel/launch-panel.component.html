@@ -1,8 +1,10 @@
 <ng-container *ngIf="!layout.edit">
     <span class="max-time">Max Time: {{simulationOptions.maximumTimeMs}}</span>
     <span class="step-time">Step: {{simulationOptions.stepTimeMs}}</span>
-    <a class="button" (click)="onReset(true)">Reset</a>
+    <a class="button" (click)="onDefaults(true)">Defaults</a>
     <a class="button" (click)="onEdit(true)">Edit</a>
+    <span class="separator">|</span>
+    <a class="button" (click)="onLaunch(true)">Reset</a>
     <a class="button" (click)="onLaunch(true)">Go!</a>
 </ng-container>
 
