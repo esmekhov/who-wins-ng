@@ -14,6 +14,7 @@ export class LaunchPanelComponent implements OnInit {
 
   @Output() edit = new EventEmitter<boolean>();
   @Output() defaults = new EventEmitter<boolean>();
+  @Output() reset = new EventEmitter<boolean>();
   @Output() launch = new EventEmitter<boolean>();
   @Output() save = new EventEmitter<SimulationOptions>();
 
@@ -41,6 +42,10 @@ export class LaunchPanelComponent implements OnInit {
 
   onDefaults(value: boolean) {
     this.defaults.emit(value);
+  }
+
+  onReset(value: boolean) {
+    this.reset.emit(value);
   }
 
   onSave() {

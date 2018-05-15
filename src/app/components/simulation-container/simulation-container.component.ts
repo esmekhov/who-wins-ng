@@ -32,9 +32,14 @@ export class SimulationContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.simulationService.init();
-    this.teams = this.simulationService.getTeams();
+    this.init();
     this.simulationOptions$.subscribe(o => this.options = o);
+  }
+
+  init() {
+    this.simulationService.init();
+    this.entries = [];
+    this.teams = this.simulationService.getTeams();
   }
 
   run(value: boolean) {
@@ -65,6 +70,10 @@ export class SimulationContainerComponent implements OnInit {
 
   defaults(value: boolean) {
     this.store.dispatch({ type: SimActions.RESET });
+  }
+
+  reset(value: boolean) {
+    this.init();
   }
 
 }
