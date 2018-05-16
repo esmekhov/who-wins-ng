@@ -1,5 +1,10 @@
 <div class="character-list-header">
-  {{team.name}}
+  <span class="character-list-name">
+    {{team.name}}
+  </span>
+  <a [routerLink]="link" class="character-list-edit">
+    Edit
+  </a>
 </div>
 <div *ngFor="let char of team.characters" class="character-list-content">
   <app-character-card [character]="char"></app-character-card>

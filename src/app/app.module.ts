@@ -15,10 +15,11 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { SimulationPageComponent } from './pages/simulation-page/simulation-page.component';
 import { TeamEditorPageComponent } from './pages/team-editor-page/team-editor-page.component';
+import { TeamEditorContainerComponent } from './components/team-editor-container/team-editor-container.component';
 
 const routes: Routes = [
   { path: 'simulation', component: SimulationPageComponent },
-  { path: 'team-editor', component: TeamEditorPageComponent },
+  { path: 'team-editor/:name', component: TeamEditorPageComponent },
   { path: '',   redirectTo: '/simulation', pathMatch: 'full' }
 ];
 
@@ -33,7 +34,8 @@ const routes: Routes = [
     CharacterListComponent,
     CharacterPanelComponent,
     SimulationPageComponent,
-    TeamEditorPageComponent
+    TeamEditorPageComponent,
+    TeamEditorContainerComponent
   ],
   imports: [
     BrowserModule,

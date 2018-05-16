@@ -9,11 +9,16 @@ import { Character, CharacterProperty } from '../../types/character';
 })
 export class CharacterListComponent implements OnInit {
 
+  @Input() editMode = false;
   @Input() team: Team;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  get link() {
+    return '/team-editor/' + this.team.name;
   }
 
 }

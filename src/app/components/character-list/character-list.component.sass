@@ -2,6 +2,16 @@
 @import '../../sass/extensions'
     
 .character-list-header
+    @extend %flex-row
     width: 100%
     background: $primary
     padding: $base-spacing
+    
+.character-list-edit
+    flex: 0 1 auto
+    color: $secondary
+    font-weight: bold
+    cursor: pointer
+
+.character-list-name
+    flex: 1 0 auto

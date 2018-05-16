@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Team from '../../types/team';
+import { SimulationService } from '../../services/simulation.service';
 
 @Component({
   selector: 'app-team-editor-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamEditorPageComponent implements OnInit {
 
-  constructor() { }
+  private team: Team;
+
+  constructor(private simulationService: SimulationService) { }
 
   ngOnInit() {
+    this.simulationService.getTeams().filter(t => t.name === name);
   }
 
 }
