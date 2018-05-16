@@ -34,11 +34,14 @@ export class SimulationContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.init();
     this.simulationOptions$.subscribe(o => this.options = o);
+    this.teams$.subscribe(t => this.teams = t);
+
+    this.init();
   }
 
   init() {
+    this.simulationService.setTeams(this.teams);
     this.simulationService.init();
     this.entries = [];
     this.teams = this.simulationService.getTeams();

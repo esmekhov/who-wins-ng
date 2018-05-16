@@ -12,17 +12,13 @@ import Team from '../types/team';
 })
 export class SimulationService {
 
-  private players: Player[];
+  private players: Player[] = [];
   private ruleSet: RuleSet;
   private context: SimulatorContext;
   public simulator: Simulator;
   private winner: Player[];
 
   constructor() {
-    this.players = [
-      new AIPlayer('AI 1'),
-      new AIPlayer('AI 2')
-    ];
     this.ruleSet = new MyRuleSet();
   }
 
@@ -60,5 +56,9 @@ export class SimulationService {
     return this.players.map(p => {
       return Team.create(p.id, p.getCharacters().map(Character.create));
     });
+  }
+
+  setTeams(teams: Team[]) {
+    this.players = teams.map(t => new AIPlayer(t.name));
   }
 }
