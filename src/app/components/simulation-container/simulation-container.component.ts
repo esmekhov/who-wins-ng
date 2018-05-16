@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { State, getLayout, getSimulationOptions } from '../../reducers';
+import { State, getLayout, getSimulationOptions, getTeams } from '../../reducers';
 import { getEdit, Actions, Layout } from '../../reducers/layout';
 
 import { SimulationService } from '../../services/simulation.service';
@@ -21,6 +21,7 @@ export class SimulationContainerComponent implements OnInit {
 
   private layout$: Observable<Layout>;
   private simulationOptions$: Observable<SimulationOptions>;
+  private teams$: Observable<Team[]>;
 
   private options: SimulationOptions;
   private entries: GameEvent[];
@@ -29,6 +30,7 @@ export class SimulationContainerComponent implements OnInit {
   constructor(private simulationService: SimulationService, private store: Store<State>) {
     this.layout$ = this.store.pipe(select(getLayout));
     this.simulationOptions$ = this.store.pipe(select(getSimulationOptions));
+    this.teams$ = this.store.pipe(select(getTeams));
   }
 
   ngOnInit() {
