@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Team from '../../types/team';
 import { Character, CharacterProperty } from '../../types/character';
 
@@ -12,6 +12,8 @@ export class CharacterListComponent implements OnInit {
   @Input() editMode = false;
   @Input() team: Team;
 
+  @Output() addCharacter = new EventEmitter<Character>();
+
   constructor() { }
 
   ngOnInit() {
@@ -21,4 +23,13 @@ export class CharacterListComponent implements OnInit {
     return '/team-editor/' + this.team.name;
   }
 
+  onAddCharacter() {
+    const char = new Character();
+    char.name = 'Default';
+    char.properties = [
+      new CharacterProperty('hp', 100),
+      new CharacterProperty('damage', 2)
+    ];
+    this.addCharacter.emit(char);
+  }
 }

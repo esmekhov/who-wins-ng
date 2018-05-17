@@ -13,3 +13,6 @@
 <div *ngFor="let char of team.characters" class="character-list-content">
   <app-character-card [character]="char"></app-character-card>
 </div>
+<div class="character-list-footer" *ngIf="editMode">
+  <a class="character-add-button" (click)="onAddCharacter()">Add Character</a>
+</div>
