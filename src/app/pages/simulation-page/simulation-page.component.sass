@@ -1,0 +1,14 @@
+@import '../../sass/variables'
+@import '../../sass/extensions'
+
+.container
+	display: block;
+	padding: $base-spacing 2*$base-spacing
+	min-height: 100%
+
+	@include mobile
+		padding: $base-spacing $base-spacing/2
+
+	@include desktop
+		width: 768px
+		margin: auto
