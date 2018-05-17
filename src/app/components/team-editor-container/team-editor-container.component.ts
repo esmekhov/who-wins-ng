@@ -4,8 +4,9 @@ import Team from '../../types/team';
 
 import { SimulationService } from '../../services/simulation.service';
 import { State, getLayout, getSimulationOptions, getTeams } from '../../reducers';
-import { getTeam } from '../../reducers/teams';
+import { getTeam, Actions } from '../../reducers/teams';
 import { Observable } from 'rxjs';
+import { Character } from '../../types/character';
 
 @Component({
   selector: 'app-team-editor-container',
@@ -30,6 +31,13 @@ export class TeamEditorContainerComponent implements OnInit {
 
   get teamName() {
     return this._teamName;
+  }
+
+  addCharacter(char: Character) {
+    this.store.dispatch({ type: Actions.ADD_CHARACTER, payload: {
+      name: this.teamName,
+      character: char
+    }});
   }
 
 }
