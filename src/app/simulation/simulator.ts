@@ -3,7 +3,7 @@ import Queue from './game-queue';
 import { GameCharacter } from './character';
 import { AttackEvent, GameEvent } from './game-event';
 import { attack } from './process';
-import { Player } from './player';
+import { Player, AIPlayer } from './player';
 
 export class SimulatorContext {
 
@@ -13,14 +13,33 @@ export class SimulatorContext {
     constructor(public players?, public ruleSet?) {
         this.players = players;
         this.ruleSet = ruleSet;
+        this.characters = new Map<string, GameCharacter[]>();
+        if (players && players.length > 0) {
+            this._initPlayers();
+        }
     }
 
-    init() {
-        this.characters = new Map<string, GameCharacter[]>();
+    _initPlayers() {
         this.players.map(p => {
             this.characters.set(p.id, []);
             p.setContext(this);
         });
+    }
+
+    init() {
+        this._initPlayers();
+    }
+
+    addPlayer(player: Player) {
+        if (!this.characters.has(player.id)) {
+            this.characters.set(player.id, []);
+            player.setContext(this);
+        }
+    }
+
+    removePlayer(player: Player) {
+        this.characters.delete(player.id);
+        player.setContext(null);
     }
 
 }

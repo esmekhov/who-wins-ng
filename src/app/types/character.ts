@@ -28,4 +28,12 @@ export class Character {
         }
         return char;
     }
+
+    getProperty(name: string): CharacterProperty {
+        return this.properties.filter(p => p.name === name).slice().pop();
+    }
+
+    getPropertyValue(name: string): any {
+        return this.getProperty(name).value;
+    }
 }

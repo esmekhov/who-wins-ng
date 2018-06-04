@@ -42,9 +42,6 @@ export class SimulationService {
 
     this.simulator = new Simulator(this.context);
     this.simulator.init();
-
-    this.players[0].addCharacter(new GameCharacter(100, 5, 'Hero'));
-    this.players[1].addCharacter(new GameCharacter(100, 4, 'Monster'));
   }
 
   run(): Simulator {
@@ -59,6 +56,12 @@ export class SimulationService {
   }
 
   setTeams(teams: Team[]) {
-    this.players = teams.map(t => new AIPlayer(t.name));
+    this.players = teams.map(t => {
+      const p = new AIPlayer(t.name);
+      p.setContext(this.context);
+      t.characters.map(c => new GameCharacter(c.getPropertyValue('hp'), c.getPropertyValue('damage'), c.name))
+        .map(gc => p.addCharacter(gc));
+      return p;
+    });
   }
 }

@@ -4,31 +4,22 @@ import { GameCharacter } from './character';
 export class Player {
 
     protected context: SimulatorContext;
+    protected characters: GameCharacter[];
 
-    constructor(public readonly id: string) {}
+    constructor(public readonly id: string) {
+        this.characters = [];
+    }
 
     setContext(context: SimulatorContext) {
         this.context = context;
     }
 
     addCharacter(character: GameCharacter) {
-        const chars = this.context.characters.get(this.id);
-        chars.push(character);
+        this.characters.push(character);
     }
 
-    getCharacters(id?: string) {
-        const key = id || this.id;
-        return this.context.characters.get(key);
-    }
-
-    getOtherCharacters() {
-        let result = [];
-        this.context.characters.forEach((chars: GameCharacter[], playerId: string) => {
-            if (playerId !== this.id) {
-                result = result.concat(chars);
-            }
-        });
-        return result;
+    getCharacters() {
+        return this.characters.slice();
     }
 
 }
@@ -39,9 +30,21 @@ export class AIPlayer extends Player {
         super(id);
     }
 
+    getHostileCharacters() {
+        let result = [];
+        if (this.context) {
+            this.context.players.forEach((p: Player) => {
+                if (p.id !== this.id) {
+                    result = result.concat(p.getCharacters());
+                }
+            });
+        }
+        return result;
+    }
+
     act() {
         const myCharacters = this.getCharacters();
-        const hostileCharacters = this.getOtherCharacters();
+        const hostileCharacters = this.getHostileCharacters();
         return myCharacters[0].attack(hostileCharacters[0], this.context.timer);
     }
 
